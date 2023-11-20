@@ -1,0 +1,1 @@
+auto-editor IMG_0103.MOV --export premiere

@@ -1,0 +1,118 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Запись
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-1g-12">
+            <p>
+                Длительность консультации: 1 час
+            </p>
+            <p>
+                <button class="btn btn-primary btn-accent" type="button" data-toggle="collapse" data-target="#areas-poor-knowladge" aria-expanded="false" aria-controls="collapseExample">
+                    Список областей, с которыми я пока что не ознакомился в полной мере
+                </button>
+            </p>
+            <div class="collapse toggle-text" id="areas-poor-knowladge">
+              <div class="card card-body">
+                  <ul>
+                      <p>Есть общие советы, но в полной мере я проконсультировать по следующим вопросам я не способен</p>
+                      <li>Похудение / сброс лишнего веса</li>
+                      <li>Глубокая депрессия</li>
+                      <li>Повышение тестестерона</li>
+                      <li>Лечение от зависимостей</li>
+                      <li>Избавление от хронического стресса</li>
+                      <li>Избавление от страхов и психологических травм</li>
+                      <li>Здоровье кишечника</li>
+                      <li>Индивидуальный план питания</li>
+
+                  </ul>
+              </div>
+            </div>
+
+            <p>
+                <button class="btn btn-primary btn-accent" type="button" data-toggle="collapse" data-target="#areas-good-knowladge" aria-expanded="false" aria-controls="collapseExample">
+                    Список областей, в которых можно получить консультацию
+                </button>
+            </p>
+            <div class="collapse toggle-text" id="areas-good-knowladge">
+              <div class="card card-body">
+                  <ul>
+                      <p></p>
+                      <li>Улучшение качества сна и все вопросы связанные со сном</li>
+                      <li>Мотивация, стремление, прокрастинация</li>
+                      <li>Фокус и концентрация внимания</li>
+                      <li>Наращивание мышечной массы</li>
+                      <li>Общие вопросы по питанию</li>
+                      <li>Общие вопросы по распорядку дня</li>
+                      <li>Общие вопросы на тему отдыха</li>
+                      <li>Имунная система</li>
+                      <li>Внедрение хороших привычек и отказ от вредных по вопросам зависимости на данный ммомент времени обращаться не стоит</li>
+                      <li>Общие вопросы счастья и удовлетворенности жизнью</li>
+                      <li>Общие вопросы, связанные с психологией</li>
+                  </ul>
+              </div>
+            </div>
+
+            <p>
+                <button class="btn btn-primary btn-accent" type="button" data-toggle="collapse" data-target="#payments" aria-expanded="false" aria-controls="collapseExample">
+                    Способы оплаты
+                </button>
+            </p>
+            <div class="collapse toggle-text" id="payments">
+              <div class="card card-body">
+                  <ul>
+                      <li>Алексей Александрович П.</li>
+                      <li>Сбер: 4276380110354052</li>
+                      <li>Альфа: 4261012633779245</li>
+                      <li>Binance: criscit15@mail.ru</li>
+                      <li>По другим способам расчета напишите письмо мне на электронный адрес или оставьте контакты в комментарии</li>
+                  </ul>
+              </div>
+            </div>
+            <h1>Записаться на консультацию</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleInputName2">Имя*</label>
+                    <input type="text" name="{{ form.first_name.name }}" class="form-control" id="exampleInputName23" placeholder="Введите Ваше имя">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">Фамилия*</label>
+                    <input type="text" name="{{ form.second_name.name }}" class="form-control" id="exampleInputName2" placeholder="Введите Вашу фамилия">
+                </div>
+                <div class="form-group" >
+                    <label for="exampleInputEmail1">Email*</label>
+                    <input type="email" name="{{ form.email.name }}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите ваш email для назначения встречи">
+                    <small id="emailHelp" class="form-text text-muted">Мы не передаем ваши персональные данные третьим лицам</small><br><br>
+                </div>
+                <label for="select1">Выберите удобную для Вас дату встречи*</label>
+                <select class="form-control" id="select1" aria-describedby="selectHelp" name="{{ form.date_time.name }}">
+                    <option></option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>Нет свободных дат</option>
+                </select>
+                <small id="selectHelp" class="form-text text-muted">Выберите "Нет свободных дат" и отправьте форму, чтобы помочь нам стать лучше</small><br><br>
+
+                <label for="select2">Выберите статус оплаты*</label>
+                <select class="form-control paid_text" id="select2" aria-describedby="selectHelp2" name="{{ form.is_paid.name }}">
+                    <option></option>
+                    <option>Оплачу в течение дня</option>
+                    <option>Оплачено</option>
+                </select>
+                <small id="selectHelp2" class="form-text text-muted">В случае остуствия оплаты спустя сутки бронирование даты отменяется</small><br><br>
+
+                <textarea class="form-control" rows="3" name="{{ form.comments.name }}" placeholder="Пожелания, критика, похвала"></textarea><br>
+                <button type="submit" class="btn btn-primary btn-accent">Записаться</button>
+                <span>{{ error }}</span>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
